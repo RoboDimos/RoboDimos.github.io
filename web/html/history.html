@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/style1.css"/>
+    <title>My History</title>
+
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $("#Fdatepicker").datepicker({ dateFormat: 'dd-M-yy' });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#Tdatepicker").datepicker({ dateFormat: 'dd-M-yy' });
+        });
+    </script>
+
+   <!-- <script language="javascript" type="text/javascript">
+    function showHide(shID) {
+       if (document.getElementById(shID)) {
+          if (document.getElementById(shID).style.display != 'none') {
+
+             document.getElementById(shID).style.display = 'block';
+
+             document.getElementById(shID+'-rowshow').style.display = 'block';
+          }
+          else {
+             document.getElementById(shID+'-show').style.display = 'inline';
+             document.getElementById(shID).style.display = 'none';
+          }
+       }
+    }
+    </script>-->
+
+    <script>
+        function gotoHist() {
+            window.location = "./historybf.html";
+            return false;
+        }
+    </script>
+
+</head>
+<body>
+<div class="backgr">
+    <div class="container">
+        <!-- the header menu -->
+        <div id="header">
+            <ul>
+                <li><img src="../img/radfa_favicon2.png" alt="logo" class="_logo_img"></li>
+                <li>Welcome NAME !</li>
+            </ul>
+
+            <div class="right">
+                <a href="./login.html">Log Out</a>
+            </div>
+        </div>
+
+        <!-- the main content of the page -->
+        <div id="content">
+            <div id="sidebar">
+                <img src="../img/grey-user-icon3.png" alt="myPhoto" id="user_img">
+                <ul>
+                    <li><a href="./profile.html">Home</a></li>
+                    <li><a href="./myfacets.html">My Facets</a></li>
+                    <li><a href="./newfacet.html">Add New Facet</a></li>
+                    <li><a href="./editfacet.html">Edit a Facet</a></li>
+                    <li class="active"><a href="./history.html">History</a></li>
+                </ul>
+            </div>
+
+
+            <div id="content_right">
+                <div id="main-form">
+
+                    <form id="facetSearch" method="get" action="./profileR.html">
+                        <div id="_left">
+                            <div class="basic_text">Choose a Group:</div>
+                            <select id="group" name="groups">
+                                <option value="gr1">Group 1</option>
+                                <option value="gr2">Group 2</option>
+                                <option value="gr3">MyStore</option>
+                            </select>
+                            <div class="_gap"> </div>
+                            <div class="basic_text">Choose a Time Period:</div>
+                            <div class="date_text">From: <input type="text" id="Fdatepicker"></div><br>
+                            <div class="date_text">To: <input type="text" id="Tdatepicker"></div>
+
+                        </div>
+                        <div id="_right">
+                            <div class="basic_text">Choose a Facet:</div>
+                            <select id="facet" name="facets">
+                                <option value="fc1">Facet 1</option>
+                                <option value="fc2">black_friday</option>
+                                <option value="fc3">New arrival</option>
+                            </select>
+
+                            <div class="_gap"> </div>
+                            <div class="basic_text">Choose Statistics:</div>
+                            <div class="date_text">Likes<input type="checkbox" name="stats" value="likes" checked></div>
+                            <!--<div class="date_text">+ / -<input type="checkbox" name="stats" value="posneg"></div>-->
+                            <div class="date_text">Comments<input type="checkbox" name="stats" value="comments"></div>
+                            <div class="date_text">Posts<input type="checkbox" name="stats" value="posts" checked></div>
+                        </div>
+
+
+                        <input type="submit" value="Search" id="search"/>
+                        <input type="submit" value="Reset" id="reset"/>
+                    </form>
+                </div>
+
+                <div id="main_body">
+                    <b>My History</b>
+                    <table class="_facet_table">
+                        <thead>
+                            <tr role="row">
+                                <th rowspan="1" colspan="1">Group</th>
+                                <th rowspan="1" colspan="1">Facet</th>
+                                <th rowspan="1" colspan="1">Time Period</th>
+                                <th rowspan="1" colspan="1">Date</th>
+                                <th rowspan="1" colspan="1">Likes</th>
+                                <th rowspan="1" colspan="1">Comments</th>
+                                <th rowspan="1" colspan="1">Posts</th>
+                                <th rowspan="1" colspan="1">Details</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr class="_data_odd">
+                                <td>MyStore</td>
+                                <td>black_friday</td>
+                                <td>25/11/2016 - 30/11/2016</td>
+                                <td>12/12/2016</td>
+                                <td>1000</td>
+                                <td>100</td>
+                                <td>3</td>
+                                <td>
+                                    <form action="./historybf.html">
+                                        <input type="button" name="More" class="_morebtn" style="border:none;" onclick="gotoHist();">
+                                        <input type="button" name="rm" class="_rmbtn" style="float:right; border:none;">
+                                    </form>
+                                </td>
+                            </tr>
+
+                            <!--
+                            <tr id="more-rowshow" style="display:none;">
+                                <td colspan="8"><div class="_hide_more" id="more"> POSTS</div></td>
+                            </tr>-->
+                            <tr>
+                                <td>Group1</td>
+                                <td>Facet1</td>
+                                <td>10/11/2016</td>
+                                <td>15/12/2016</td>
+                                <td>20</td>
+                                <td>5</td>
+                                <td>8</td>
+                                <td>
+                                    <form>
+                                        <input type="button" name="More" class="_morebtn" style="border:none;">
+                                        <input type="button" name="rm" class="_rmbtn" style="float:right; border:none;">
+                                    </form>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div id="footer">
+            <ul>
+                <li>Help</li>
+                <li><a href="./privacypolicy.html">Privacy Policy</a></li>
+                <li>Supported by @Demokritos</li>
+                <li>Contact Info</li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

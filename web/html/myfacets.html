@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/style1.css"/>
+
+    <title>My Facets</title>
+
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $("#Fdatepicker").datepicker({ dateFormat: 'dd-M-yy' });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#Tdatepicker").datepicker({ dateFormat: 'dd-M-yy' });
+        });
+    </script>
+
+</head>
+<body>
+<div class="backgr">
+    <div class="container">
+        <!-- the header menu -->
+        <div id="header">
+            <ul>
+                <li><img src="../img/radfa_favicon2.png" alt="logo" class="_logo_img"></li>
+                <li>Welcome NAME !</li>
+            </ul>
+
+            <div class="right">
+                <a href="./login.html">Log Out</a>
+            </div>
+        </div>
+
+        <!-- the main content of the page -->
+        <div id="content">
+            <div id="sidebar">
+                <img src="../img/grey-user-icon3.png" alt="myPhoto" id="user_img">
+                <ul>
+                    <li><a href="./profile.html">Home</a></li>
+                    <li class="active"><a href="./myfacets.html">My Facets</a></li>
+                    <li><a href="./newfacet.html">Add New Facet</a></li>
+                    <li><a href="./editfacet.html">Edit a Facet</a></li>
+                    <li><a href="./history.html">History</a></li>
+                </ul>
+            </div>
+
+
+            <div id="content_right">
+                <div id="main-form">
+
+                    <form id="facetSearch" method="get" action="./profileR.html">
+                        <div id="_left">
+                            <div class="basic_text">Choose a Group:</div>
+                            <select id="group" name="groups">
+                                <option value="gr1">Group 1</option>
+                                <option value="gr2">Group 2</option>
+                                <option value="gr3">MyStore</option>
+                            </select>
+                            <div class="_gap"> </div>
+                            <div class="basic_text">Choose a Time Period:</div>
+                            <div class="date_text">From: <input type="text" id="Fdatepicker"></div><br>
+                            <div class="date_text">To: <input type="text" id="Tdatepicker"></div>
+
+                        </div>
+                        <div id="_right">
+                            <div class="basic_text">Choose a Facet:</div>
+                            <select id="facet" name="facets">
+                                <option value="fc1">Facet 1</option>
+                                <option value="fc2">black_friday</option>
+                                <option value="fc3">New arrival</option>
+                            </select>
+
+                            <div class="_gap"> </div>
+                            <div class="basic_text">Choose Statistics:</div>
+                            <div class="date_text">Likes<input type="checkbox" name="stats" value="likes" checked></div>
+                            <!--<div class="date_text">+ / -<input type="checkbox" name="stats" value="posneg"></div>-->
+                            <div class="date_text">Comments<input type="checkbox" name="stats" value="comments"></div>
+                            <div class="date_text">Posts<input type="checkbox" name="stats" value="posts" checked></div>
+                        </div>
+
+
+                        <input type="submit" value="Search" id="search"/>
+                        <input type="submit" value="Reset" id="reset"/>
+                    </form>
+                </div>
+
+                <div id="main_body">
+
+                    <b>My Facets:</b><br><br>
+                    <div class="posts_res">
+
+                        <form name="editFacet" class="_editF">
+                            <input type="button" value="Delete" id="delF1" />
+                            <input type="submit" value="Edit" id="editF1"/>
+                        </form>
+
+                        Facet 1
+
+                        <div class="posts_st">
+                            <ul class="posts_st_ul">
+                                <li>keyword 1</li>
+                                <li>keyword 2</li>
+                                <li>keyword 3</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="posts_res">
+
+                        <form name="editFacet" class="_editF" method="get" action="./editfacetbf.html">
+                            <input type="button" value="Delete" id="delF2" />
+                            <input type="submit" value="Edit" id="editF2"/>
+                        </form>
+
+                        black_friday
+
+                        <div class="posts_st">
+                            <ul class="posts_st_ul">
+                                <li>offer</li>
+                                <li>discount</li>
+                                <li>outlet</li>
+                                <li>deal</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="posts_res">
+
+                        <form name="editFacet" class="_editF">
+                            <input type="button" value="Delete" id="delF3" />
+                            <input type="submit" value="Edit" id="editF3"/>
+                        </form>
+
+                        New arrival
+
+                        <div class="posts_st">
+                            <ul class="posts_st_ul">
+                                <li>new arrival</li>
+                                <li>brand new</li>
+                                <li>ship</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div id="footer">
+            <ul>
+                <li>Help</li>
+                <li><a href="./privacypolicy.html">Privacy Policy</a></li>
+                <li>Supported by @Demokritos</li>
+                <li>Contact Info</li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
