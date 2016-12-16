@@ -8,9 +8,17 @@ function validate(){
 
     //TODO: put fb login
     if ( username == "admin" && password == "admin"){
-        window.location = "../html/profile.html"; // Redirecting to other page.
-        alert('successful login');
-        return false;
+       if (window.confirm('To continue, you should accept the permissions user_posts, user_managed_groups. Do you want to continue?'))
+       {
+            window.location = "../html/profile.html"; // Redirecting to other page.
+            alert('successful login');
+            return false;
+       }
+       else {
+            window.location = "../html/login.html";
+             alert('rejected');
+            return false;
+       }
     }
     else{
         attempt --;// Decrementing by one.
