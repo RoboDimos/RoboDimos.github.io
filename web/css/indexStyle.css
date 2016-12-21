@@ -29,13 +29,20 @@ div.container{
     overflow:auto;
 }
 
+h3 {
+    text-align:center;
+    text-shadow: 1px 1px 1px #888888;
+    color: #1d385a;
+    margin-top: 30px;
+    font-style: italic;
+}
+
 /* HEADER */
 
 #header {
     clear: both;
     width: 100%;
     height: 45px;
-    /*background: url(./images/menu_bg.jpg) no-repeat;*/
     background: linear-gradient(#486180 10%, #8bacd4 100%);
     color: #ffffff;
     font-weight: bold;
@@ -98,18 +105,25 @@ div.container{
 
 #content {
     width: 90%;
-    padding: 50px 0px;
+    padding: 40px 0px;
     position:absolute;
     margin: auto;
 }
 
-#content #main {
-    width: 80%;
-    margin: auto;
-    position: relative;
-    color: #1d385a;
+#content #content-left {
+    float: left;
+    background: no-repeat;
+    width: 40%;
+    margin: 0 auto;
+}
+
+#content #content-right {
+    float: right;
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 200px;
     font-size: 18px;
-    overflow: auto;
+    color: #1d385a;
 }
 
 .loginForm{

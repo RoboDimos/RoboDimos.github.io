@@ -44,17 +44,86 @@
 
 </head>
 <body>
+
+<script>
+
+  function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+
+    if (response.status === 'connected') {
+      testAPI();
+    } else if (response.status === 'not_authorized') {
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into this app.';
+    } else {
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into Facebook.';
+    }
+  }
+
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  }
+
+  function logout() {
+    FB.logout(function(response) {
+       document.getElementById('status').innerHTML =
+        'Successful log out ';
+    });
+  }
+
+  window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '730308040455518',
+        cookie     : false,
+        xfbml      : true,
+        version    : 'v2.8'
+      });
+
+      FB.getLoginStatus(function(response) {
+        statusChangeCallback(response);
+      });
+      FB.Event.subscribe('auth.login', function () {
+          window.location = "http://localhost:63342/RadFa/web/html/profile.html";
+      });
+
+      FB.Event.subscribe('auth.logout', function () {
+          window.location = "http://localhost:63342/RadFa/web/html/login.html";
+      });
+
+  };
+
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  function testAPI() {
+    console.log('Welcome!  Fetching your information.... ');
+    FB.api('/me', function(response) {
+      document.getElementById('status').innerHTML =
+        'Welcome ' + response.name + '!';
+    });
+  }
+</script>
+
 <div class="backgr">
     <div class="container">
         <!-- the header menu -->
         <div id="header">
             <ul>
                 <li><img src="../img/radfa_favicon2.png" alt="logo" class="_logo_img"></li>
-                <li>Welcome NAME !</li>
+                <li><div style="display: inline;" id="status"></div></li>
             </ul>
 
             <div class="right">
-                <a href="./login.html">Log Out</a>
+                <div class="fb-login-button" scope="user_managed_groups" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="true" onlogin="checkLoginState();"></div>
             </div>
         </div>
 

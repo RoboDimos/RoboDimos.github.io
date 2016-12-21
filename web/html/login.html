@@ -8,6 +8,77 @@
     <script src="../js/login.js"></script>
 </head>
 <body>
+
+<script>
+
+  function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+
+    if (response.status === 'connected') {
+      testAPI();
+    } else if (response.status === 'not_authorized') {
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into this app.';
+    } else {
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into Facebook.';
+    }
+  }
+
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  }
+
+  function logout() {
+    FB.logout(function(response) {
+       document.getElementById('status').innerHTML =
+        'Successful log out ';
+    });
+  }
+
+  window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '730308040455518',
+        cookie     : false,
+        xfbml      : true,
+        version    : 'v2.8'
+      });
+
+      FB.getLoginStatus(function(response) {
+        statusChangeCallback(response);
+      });
+      FB.Event.subscribe('auth.login', function () {
+          window.location = "http://localhost:63342/RadFa/web/html/profile.html";
+      });
+      FB.Event.subscribe('auth.logout', function () {
+          window.location = "http://localhost:63342/RadFa/web/html/login.html";
+      });
+
+  };
+
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  function testAPI() {
+    console.log('Welcome!  Fetching your information.... ');
+
+    FB.api('/me', function(response) {
+      console.log('Successful login for: ' + response.name);
+      document.getElementById('status').innerHTML =
+        'Thanks for logging in, ' + response.name + '!';
+    });
+  }
+</script>
+
+
 <div class="backgr">
     <div class="container">
         <!-- the header menu -->
@@ -18,21 +89,43 @@
             </ul>
         </div>
 
+        <h3>Log in to <b>RadFa</b>! Discover the reasonance of your words beyond your posts and your groups!!!</h3>
         <!-- the main content of the page -->
         <div id="content">
-            <div id="main">
-            Log in to <b>RadFa</b>! Discover the reasonance of your words beyond your posts and your groups!!!
+
+            <img src="../img/radfa_faviconB.png" alt="logo" id="content-left">
+
+            <div id="content-right">
+                <em>1. Do you want to handle your groups easier?<br>
+                2. Do you want to know which words are more valuable to you and your groups?<br><br></em>
+
+                Then, the only thing you need is to enter to RadFa's world, only with one move....<br><br>
+
+                <br>
+                <br>
+                <br>
+                <b>Log In to Radfa with your Facebook account now!</b>
+
+
+                <div class="fb-login-button" scope="user_managed_groups,user_posts" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="true" onlogin="checkLoginState();"></div>
             </div>
 
+
+            <!--
             <div class="loginForm">
-                <div class="main_txt"> Log In with your Facebook account!</div>
+                To ender t
+                <div class="main_txt"> Log In with your Facebook account now!</div>
+                <div class="fb-login-button" scope="email,user_friends" data-max-rows="1" data-size="x-large" data-show-faces="false" data-auto-logout-link="true" onlogin="checkLoginState();"></div>
+
 
                 <form id="form_id" method="post" name="myform">
                    <input type="text" name="username" id="username" placeholder="Email or Phone"/>
                     <input type="password" name="password" id="password" placeholder="Password"/>
                     <input type="submit" value="Login" id="submit" onclick="validate()"/>
                 </form>
+
             </div>
+            -->
         </div>
 
         <div id="footer">
