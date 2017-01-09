@@ -51,13 +51,15 @@
     console.log(response);
 
     if (response.status === 'connected') {
-      testAPI();
+      connectAPI();
     } else if (response.status === 'not_authorized') {
       document.getElementById('status').innerHTML = 'Please log ' +
         'into this app.';
+        window.location = "./login.html";
     } else {
       document.getElementById('status').innerHTML = 'Please log ' +
         'into Facebook.';
+        window.location = "./login.html";
     }
   }
 
@@ -77,20 +79,21 @@
   window.fbAsyncInit = function() {
       FB.init({
         appId      : '730308040455518',
-        cookie     : false,
+        cookie     : true,
         xfbml      : true,
         version    : 'v2.8'
       });
 
       FB.getLoginStatus(function(response) {
         statusChangeCallback(response);
+
       });
       FB.Event.subscribe('auth.login', function () {
-          window.location = "https://robodimos.github.io/web/html/profile.html";
+          window.location = "./profile.html";
       });
 
       FB.Event.subscribe('auth.logout', function () {
-          window.location = "https://robodimos.github.io/web/html/login.html";
+          window.location = "./login.html";
       });
 
   };
@@ -103,11 +106,14 @@
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
 
-  function testAPI() {
+  function connectAPI() {
     console.log('Welcome!  Fetching your information.... ');
+
     FB.api('/me', function(response) {
+      console.log('Successful login for: ' + response.name);
       document.getElementById('status').innerHTML =
-        'Welcome ' + response.name + '!';
+        ' ' + response.name + '!';
+
     });
   }
 </script>
